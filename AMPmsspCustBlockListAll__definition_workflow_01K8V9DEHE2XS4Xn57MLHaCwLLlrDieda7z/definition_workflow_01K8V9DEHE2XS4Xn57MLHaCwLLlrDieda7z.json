@@ -7,17 +7,27 @@
     "base_type": "workflow",
     "variables": [
       {
-        "schema_id": "datatype.string",
+        "schema_id": "tabletype_01KRHWROCFMBD2YFH21djtXQpC0PAwh17Nf",
         "properties": {
-          "value": "",
-          "scope": "input",
-          "name": "sha256",
-          "type": "datatype.string",
-          "description": "input sha256",
+          "scope": "local",
+          "name": "mssp_scd_list",
+          "type": "datatype.table",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01KS90W48RKSD5LgIFyrJgyHr6BEoHgOhyb",
+        "unique_name": "variable_workflow_01KRHX741PDVA5Z4SGgqxKhpXxnT8mzbB4L",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "scope": "output",
+          "name": "Status Code",
+          "type": "datatype.integer",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01K8XOI50SJRU7eeDXfDOyCvCY2h52xs8qT",
         "object_type": "variable_workflow"
       },
       {
@@ -37,38 +47,14 @@
         "schema_id": "datatype.string",
         "properties": {
           "value": "",
-          "scope": "output",
-          "name": "output json",
-          "type": "datatype.string",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01K8XDCAGWZGF6oFbdZm2TAUY4gr6vATVKh",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
           "scope": "input",
-          "name": "observable_value",
+          "name": "sha256",
           "type": "datatype.string",
-          "is_required": true,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01KSHYTDR30893lc1BvSoPQNxluLSZcgEfQ",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.integer",
-        "properties": {
-          "scope": "output",
-          "name": "Status Code",
-          "type": "datatype.integer",
+          "description": "input sha256",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01K8XOI50SJRU7eeDXfDOyCvCY2h52xs8qT",
+        "unique_name": "variable_workflow_01KS90W48RKSD5LgIFyrJgyHr6BEoHgOhyb",
         "object_type": "variable_workflow"
       },
       {
@@ -89,12 +75,12 @@
         "properties": {
           "value": "",
           "scope": "input",
-          "name": "observable_type",
+          "name": "observable_value",
           "type": "datatype.string",
           "is_required": true,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01KSHY7S6T29Q1aVXfsebwdBShG1G5Kifla",
+        "unique_name": "variable_workflow_01KSHYTDR30893lc1BvSoPQNxluLSZcgEfQ",
         "object_type": "variable_workflow"
       },
       {
@@ -107,6 +93,19 @@
           "is_invisible": false
         },
         "unique_name": "variable_workflow_01KSDRN0VTLYY0KA58hBky381JkMpcNbz2h",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "observable_type",
+          "type": "datatype.string",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01KSHY7S6T29Q1aVXfsebwdBShG1G5Kifla",
         "object_type": "variable_workflow"
       },
       {
@@ -134,15 +133,16 @@
         "object_type": "variable_workflow"
       },
       {
-        "schema_id": "tabletype_01KRHWROCFMBD2YFH21djtXQpC0PAwh17Nf",
+        "schema_id": "datatype.string",
         "properties": {
-          "scope": "local",
-          "name": "mssp_scd_list",
-          "type": "datatype.table",
+          "value": "",
+          "scope": "output",
+          "name": "output json",
+          "type": "datatype.string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01KRHX741PDVA5Z4SGgqxKhpXxnT8mzbB4L",
+        "unique_name": "variable_workflow_01K8XDCAGWZGF6oFbdZm2TAUY4gr6vATVKh",
         "object_type": "variable_workflow"
       }
     ],
@@ -151,7 +151,7 @@
         "is_atomic": false
       },
       "delete_workflow_instance": false,
-      "description": "add SHA256 to all AMP MSSP customers SCD (Simple Custom Detection) list named: MSSP_SOC_BLOCK\nIn this example, all customers need to have SCD Named MSSP_SOC_BLOCK configured in Outbreak Control and configured in relevant policy for enforcement on endpoints.",
+      "description": "add SHA256 to all AMP MSSP customers SCD (Simple Custom Detection) list named: MSSP_SOC_BLOCK\nIn this example, all customers need to have SCD Named MSSP_SOC_BLOCK configured in Outbreak Control and configured in relevant policy for enforcement on endpoints.\nThis will also enable a SecureX Threat Response available in context menu of CTR.",
       "display_name": "AMP MSSP Customer Block List",
       "runtime_user": {
         "override_target_runtime_user": false,
@@ -858,13 +858,13 @@
       "display_name": "mssp_block_all",
       "columns": [
         {
-          "name": "name",
-          "title": "name",
+          "name": "guid",
+          "title": "guid",
           "type": "string"
         },
         {
-          "name": "guid",
-          "title": "guid",
+          "name": "name",
+          "title": "name",
           "type": "string"
         }
       ],
