@@ -1,0 +1,875 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01K8V9DEHE2XS4Xn57MLHaCwLLlrDieda7z",
+    "name": "AMP MSSP Customer Block List",
+    "title": "AMP MSSP Customer Block List",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.integer",
+        "properties": {
+          "scope": "output",
+          "name": "Status Code",
+          "type": "datatype.integer",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01K8XOI50SJRU7eeDXfDOyCvCY2h52xs8qT",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "sha256",
+          "type": "datatype.string",
+          "description": "input sha256",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01KS90W48RKSD5LgIFyrJgyHr6BEoHgOhyb",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01KRHWROCFMBD2YFH21djtXQpC0PAwh17Nf",
+        "properties": {
+          "scope": "local",
+          "name": "mssp_scd_list",
+          "type": "datatype.table",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01KRHX741PDVA5Z4SGgqxKhpXxnT8mzbB4L",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01KSDRBMZCSAX6bielcYZ3n3VrIqViU9tNX",
+        "properties": {
+          "scope": "output",
+          "name": "mssp_block_all",
+          "type": "datatype.table",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01KSDRN0VTLYY0KA58hBky381JkMpcNbz2h",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01KQR52ZQ27NB2ygbjR9Sb4jZw8j0KgLixV",
+        "properties": {
+          "value": [
+            {
+              "column_data": {
+                "total": "total"
+              }
+            },
+            {
+              "column_data": {
+                "total": "response"
+              }
+            }
+          ],
+          "scope": "local",
+          "name": "tableHolder",
+          "type": "datatype.table",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01KQR600GYBNI7cFhp9dBmsdEo4OCVuSD22",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "output json",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01K8XDCAGWZGF6oFbdZm2TAUY4gr6vATVKh",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "observable_value",
+          "type": "datatype.string",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01KSHYTDR30893lc1BvSoPQNxluLSZcgEfQ",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "observable_type",
+          "type": "datatype.string",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01KSHY7S6T29Q1aVXfsebwdBShG1G5Kifla",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "count",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01KQS3TURW1LF03rxaCL3TGkGu3HR9zpjSB",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "MSSP_SCD",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01KRDOKDSN4O820ofV5vh7AuRodGsPhxwKB",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "description": "add SHA256 to all AMP MSSP customers MSSP_SOC_BLOCK",
+      "display_name": "AMP MSSP Customer Block List",
+      "runtime_user": {
+        "override_target_runtime_user": false,
+        "specify_on_workflow_start": false,
+        "target_default": true
+      },
+      "target": {
+        "no_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01KQPXC1MMS7126tOjvNdebQ9EJ5xjgbBUA",
+        "name": "Parallel Block",
+        "title": "All AMP MSSP Customers",
+        "type": "logic.parallel",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "All AMP MSSP Customers",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01KQPXCHD50Y32JybXm3HAKPb5Nq5xfNjLG",
+            "name": "Parallel Branch",
+            "title": "Cust1",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Cust1",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01K8XGC3BR6QF3GIdURCIAyUCMFk697TkIh",
+                "name": "HTTP Request",
+                "title": "Get all SCD Block List",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "display_name": "Get all SCD Block List",
+                  "method": "GET",
+                  "relative_url": "v1/file_lists/simple_custom_detections",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01K8V4RZ5R1ZF2vSncXELRt7jzmHUqgUr6Y"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01KQPTY3NE98U41YT6zvcZ6MgfGtNTEOd5l",
+                "name": "Read Table from JSON",
+                "title": "Get Blocklist Name + Guid",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Get Blocklist Name + Guid",
+                  "input_json": "$activity.definition_activity_01K8XGC3BR6QF3GIdURCIAyUCMFk697TkIh.output.response_body$",
+                  "jsonpath_query": "$.data.*",
+                  "persist_output": true,
+                  "populate_columns": false,
+                  "skip_execution": false,
+                  "table_columns": [
+                    {
+                      "column_name": "name",
+                      "column_type": "string"
+                    },
+                    {
+                      "column_name": "guid",
+                      "column_type": "string"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01KRHUIKPS1JR61z42g1yJaxA7qdURqyqEr",
+                "name": "For Each",
+                "title": "For Each",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each",
+                  "skip_execution": false,
+                  "source_array": "$activity.definition_activity_01KQPTY3NE98U41YT6zvcZ6MgfGtNTEOd5l.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01KRHXES2CDDJ0zCNDEvYbYuxgeNxqiA0aK",
+                    "name": "Add Row to Table",
+                    "title": "Create Blocklist Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Create Blocklist Table",
+                      "input_table": "$activity.definition_activity_01KQPTY3NE98U41YT6zvcZ6MgfGtNTEOd5l.output.read_table_from_json$",
+                      "row": [
+                        {
+                          "key": "name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01KRHUIKPS1JR61z42g1yJaxA7qdURqyqEr.input.source_array[@].name$"
+                        },
+                        {
+                          "key": "guid",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01KRHUIKPS1JR61z42g1yJaxA7qdURqyqEr.input.source_array[@].guid$"
+                        }
+                      ],
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_01KS8OEOB02O84YNXvIRzV09fPRusnE2C5A",
+                "name": "Select from Table",
+                "title": "Select MSSP_SOC_BLOCK",
+                "type": "core.selectfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "guid",
+                      "column_type": "string"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Select MSSP_SOC_BLOCK",
+                  "input_table": "$activity.definition_activity_01KQPTY3NE98U41YT6zvcZ6MgfGtNTEOd5l.output.read_table_from_json$",
+                  "number_of_rows": {
+                    "at_most": true,
+                    "first_n_rows": 1
+                  },
+                  "persist_output": true,
+                  "skip_execution": false,
+                  "sorting": {
+                    "no_sort": true,
+                    "sort_by": false
+                  },
+                  "where_clause": "name == \"MSSP_SOC_BLOCK\""
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01KSDZPZATMON5nDRnzwnCzKzeXNlJ3N9pR",
+                "name": "HTTP Request",
+                "title": "Update SCD MSSP_SOC_BLOCK",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "display_name": "Update SCD MSSP_SOC_BLOCK",
+                  "method": "POST",
+                  "relative_url": "/v1/file_lists/$activity.definition_activity_01KS8OEOB02O84YNXvIRzV09fPRusnE2C5A.output.output_table[0].guid$/files/$workflow.definition_workflow_01K8V9DEHE2XS4Xn57MLHaCwLLlrDieda7z.input.variable_workflow_01KS90W48RKSD5LgIFyrJgyHr6BEoHgOhyb$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01K8V4RZ5R1ZF2vSncXELRt7jzmHUqgUr6Y"
+                  }
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01KQPXCIE87KI52DwXHcuN9OUQa0WVJs4Pk",
+            "name": "Parallel Branch",
+            "title": "Cust2",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Cust2",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01KQPR51LS23R0I4XeyN5HmXwaNsjOkS8QH",
+                "name": "HTTP Request",
+                "title": "Get all SCD Block Lists",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "display_name": "Get all SCD Block Lists",
+                  "method": "GET",
+                  "relative_url": "v1/file_lists/simple_custom_detections",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01K8V7HVMD6J93dbfdeohPlsdLS7mwlLbZd"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01KQPY9M7TCK25V6hdhMByuHgteFIOnbBcl",
+                "name": "Read Table from JSON",
+                "title": "Get Blocklist Name + Guid",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Get Blocklist Name + Guid",
+                  "input_json": "$activity.definition_activity_01KQPR51LS23R0I4XeyN5HmXwaNsjOkS8QH.output.response_body$",
+                  "jsonpath_query": "$..data.*",
+                  "persist_output": true,
+                  "populate_columns": false,
+                  "skip_execution": false,
+                  "table_columns": [
+                    {
+                      "column_name": "name",
+                      "column_type": "string"
+                    },
+                    {
+                      "column_name": "guid",
+                      "column_type": "string"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01KRI8VGLARYY0zL2WNEEsw6pRVcdfoaCCU",
+                "name": "For Each",
+                "title": "For Each",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each",
+                  "skip_execution": false,
+                  "source_array": "$activity.definition_activity_01KQPY9M7TCK25V6hdhMByuHgteFIOnbBcl.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01KRI8YKVV7EM1Kg6KXXhQbI8s6PZPk1XOS",
+                    "name": "Add Row to Table",
+                    "title": "Create Blocklists Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Create Blocklists Table",
+                      "input_table": "$activity.definition_activity_01KQPY9M7TCK25V6hdhMByuHgteFIOnbBcl.output.read_table_from_json$",
+                      "row": [
+                        {
+                          "key": "name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01KRI8VGLARYY0zL2WNEEsw6pRVcdfoaCCU.input.source_array[@].name$"
+                        },
+                        {
+                          "key": "guid",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01KRI8VGLARYY0zL2WNEEsw6pRVcdfoaCCU.input.source_array[@].guid$"
+                        }
+                      ],
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_01KS8UPFYG3VO6KqsENAge5vTXBGPXu5MLR",
+                "name": "Select from Table",
+                "title": "Select MSSP_SOC_BLOCK",
+                "type": "core.selectfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "guid",
+                      "column_type": "string"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Select MSSP_SOC_BLOCK",
+                  "input_table": "$activity.definition_activity_01KQPY9M7TCK25V6hdhMByuHgteFIOnbBcl.output.read_table_from_json$",
+                  "number_of_rows": {
+                    "at_most": true,
+                    "first_n_rows": 1
+                  },
+                  "persist_output": true,
+                  "skip_execution": false,
+                  "sorting": {
+                    "no_sort": true,
+                    "sort_by": false
+                  },
+                  "where_clause": "name == \"MSSP_SOC_BLOCK\""
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01KSE21TU2TAG1k2sEfKZaN1QXcDWp3pdco",
+                "name": "HTTP Request",
+                "title": "Update SCD MSSP_SOC_BLOCK",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "display_name": "Update SCD MSSP_SOC_BLOCK",
+                  "method": "POST",
+                  "relative_url": "/v1/file_lists/$activity.definition_activity_01KS8UPFYG3VO6KqsENAge5vTXBGPXu5MLR.output.output_table[0].guid$/files/$workflow.definition_workflow_01K8V9DEHE2XS4Xn57MLHaCwLLlrDieda7z.input.variable_workflow_01KS90W48RKSD5LgIFyrJgyHr6BEoHgOhyb$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01K8V7HVMD6J93dbfdeohPlsdLS7mwlLbZd"
+                  }
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_01KQPXFGZVGVI3FOY0yZUldjSzr0dY9VZ7n",
+            "name": "Parallel Branch",
+            "title": "Cust3",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "continue_on_failure": false,
+              "display_name": "Cust3",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01KQPR7J3GBSD1jQIrLsyk8MqqfUjvDkoLe",
+                "name": "HTTP Request",
+                "title": "Get all SCD Block Lists",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "content_type": "application/json",
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "display_name": "Get all SCD Block Lists",
+                  "method": "GET",
+                  "relative_url": "v1/file_lists/simple_custom_detections",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01K8V6A9ORRB74EexRBhjKaZ4LbFf876boX"
+                  }
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01KQPYEVVO9W71Qmy8tP7wArdgTAAgELNJq",
+                "name": "Read Table from JSON",
+                "title": "Get Blocklist Name + Guid",
+                "type": "corejava.read_table_from_json",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "continue_on_failure": false,
+                  "display_name": "Get Blocklist Name + Guid",
+                  "input_json": "$activity.definition_activity_01KQPR7J3GBSD1jQIrLsyk8MqqfUjvDkoLe.output.response_body$",
+                  "jsonpath_query": "$..data.*",
+                  "persist_output": true,
+                  "populate_columns": false,
+                  "skip_execution": false,
+                  "table_columns": [
+                    {
+                      "column_name": "name",
+                      "column_type": "string"
+                    },
+                    {
+                      "column_name": "guid",
+                      "column_type": "string"
+                    }
+                  ]
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01KRIAHB9GTOR4MhM57RUSmHLnNADR94Z0k",
+                "name": "For Each",
+                "title": "For Each",
+                "type": "logic.for_each",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "For Each",
+                  "skip_execution": false,
+                  "source_array": "$activity.definition_activity_01KQPYEVVO9W71Qmy8tP7wArdgTAAgELNJq.output.read_table_from_json$"
+                },
+                "object_type": "definition_activity",
+                "actions": [
+                  {
+                    "unique_name": "definition_activity_01KRIAHRS7LVM45FQGERew751l7cxMuiIpf",
+                    "name": "Add Row to Table",
+                    "title": "Create Blocklists Table",
+                    "type": "core.addrowtotable",
+                    "base_type": "activity",
+                    "properties": {
+                      "action_timeout": 180,
+                      "continue_on_failure": false,
+                      "display_name": "Create Blocklists Table",
+                      "input_table": "$activity.definition_activity_01KQPYEVVO9W71Qmy8tP7wArdgTAAgELNJq.output.read_table_from_json$",
+                      "row": [
+                        {
+                          "key": "name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01KRIAHB9GTOR4MhM57RUSmHLnNADR94Z0k.input.source_array[@].name$"
+                        },
+                        {
+                          "key": "guid",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01KRIAHB9GTOR4MhM57RUSmHLnNADR94Z0k.input.source_array[@].guid$"
+                        }
+                      ],
+                      "skip_execution": false
+                    },
+                    "object_type": "definition_activity"
+                  }
+                ]
+              },
+              {
+                "unique_name": "definition_activity_01KS8VMVGWGNS5hp652Jvr1UR9quPH057G8",
+                "name": "Select from Table",
+                "title": "Select MSSP_SOC_BLOCK",
+                "type": "core.selectfromtable",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "columns": [
+                    {
+                      "column_name": "guid",
+                      "column_type": "string"
+                    }
+                  ],
+                  "continue_on_failure": false,
+                  "display_name": "Select MSSP_SOC_BLOCK",
+                  "input_table": "$activity.definition_activity_01KQPYEVVO9W71Qmy8tP7wArdgTAAgELNJq.output.read_table_from_json$",
+                  "number_of_rows": {
+                    "at_most": true,
+                    "first_n_rows": 1
+                  },
+                  "persist_output": true,
+                  "skip_execution": false,
+                  "sorting": {
+                    "no_sort": true,
+                    "sort_by": false
+                  },
+                  "where_clause": "name == \"MSSP_SOC_BLOCK\""
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01KSE3YB3GYWQ7WxNhxLdiy7uwRd3LfcayH",
+                "name": "HTTP Request",
+                "title": "Update SCD MSSP_SOC_BLOCK",
+                "type": "web-service.http_request",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "allow_auto_redirect": true,
+                  "continue_on_error_status_code": false,
+                  "continue_on_failure": false,
+                  "display_name": "Update SCD MSSP_SOC_BLOCK",
+                  "method": "POST",
+                  "relative_url": "/v1/file_lists/$activity.definition_activity_01KS8VMVGWGNS5hp652Jvr1UR9quPH057G8.output.output_table[0].guid$/files/$workflow.definition_workflow_01K8V9DEHE2XS4Xn57MLHaCwLLlrDieda7z.input.variable_workflow_01KS90W48RKSD5LgIFyrJgyHr6BEoHgOhyb$",
+                  "runtime_user": {
+                    "override_target_runtime_user": false,
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01K8V6A9ORRB74EexRBhjKaZ4LbFf876boX"
+                  }
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m",
+      "category_01K8VAOK4OEOM1QkQKPMzhniniEJ29kmMov"
+    ]
+  },
+  "categories": {
+    "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m": {
+      "unique_name": "category_01FM7CGPZZCMY0KcvgiGjVH5UaB4y4aDJ7m",
+      "name": "response",
+      "title": "response",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    },
+    "category_01K8VAOK4OEOM1QkQKPMzhniniEJ29kmMov": {
+      "unique_name": "category_01K8VAOK4OEOM1QkQKPMzhniniEJ29kmMov",
+      "name": "MSSP",
+      "title": "MSSP",
+      "type": "basic.category",
+      "base_type": "category",
+      "category_type": "custom",
+      "object_type": "category"
+    }
+  },
+  "targets": {
+    "definition_target_01K8V4RZ5R1ZF2vSncXELRt7jzmHUqgUr6Y": {
+      "unique_name": "definition_target_01K8V4RZ5R1ZF2vSncXELRt7jzmHUqgUr6Y",
+      "name": "dallong_amp",
+      "title": "dallong_amp",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01K8V30RKLH9U6vNe5CnqAhiKSBSBViz3gu",
+        "disable_certificate_validation": true,
+        "display_name": "dallong_amp",
+        "host": "api.amp.cisco.com",
+        "ignore_proxy": false,
+        "no_runtime_user": false,
+        "port": 443,
+        "protocol": "https"
+      }
+    },
+    "definition_target_01K8V6A9ORRB74EexRBhjKaZ4LbFf876boX": {
+      "unique_name": "definition_target_01K8V6A9ORRB74EexRBhjKaZ4LbFf876boX",
+      "name": "Orion Tech Ltd. amp",
+      "title": "Orion Tech Ltd. amp",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01K8V6141SX5W1k0nqNcSDyhMV3FdXNqYOQ",
+        "description": "MSSP Customer Orion Tech Ltd.",
+        "disable_certificate_validation": true,
+        "display_name": "Orion Tech Ltd. amp",
+        "host": "api.amp.cisco.com",
+        "ignore_proxy": false,
+        "no_runtime_user": false,
+        "port": 443,
+        "protocol": "https"
+      }
+    },
+    "definition_target_01K8V7HVMD6J93dbfdeohPlsdLS7mwlLbZd": {
+      "unique_name": "definition_target_01K8V7HVMD6J93dbfdeohPlsdLS7mwlLbZd",
+      "name": "Lake Products amp",
+      "title": "Lake Products amp",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01K8V77KQSJ241Z7Tu1OQZqujEIfdxvZTeZ",
+        "description": "MSSP Customer Lake Products AMP Endpoints",
+        "disable_certificate_validation": true,
+        "display_name": "Lake Products amp",
+        "host": "api.amp.cisco.com",
+        "ignore_proxy": false,
+        "no_runtime_user": false,
+        "port": 443,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01K8V30RKLH9U6vNe5CnqAhiKSBSBViz3gu": {
+      "unique_name": "definition_runtime_user_01K8V30RKLH9U6vNe5CnqAhiKSBSBViz3gu",
+      "name": "dallong_amp",
+      "title": "dallong_amp",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "*****",
+        "basic_password": "*****",
+        "basic_username": "*****",
+        "display_name": "dallong_amp"
+      }
+    },
+    "definition_runtime_user_01K8V6141SX5W1k0nqNcSDyhMV3FdXNqYOQ": {
+      "unique_name": "definition_runtime_user_01K8V6141SX5W1k0nqNcSDyhMV3FdXNqYOQ",
+      "name": "OrionTechAmp",
+      "title": "OrionTechAmp",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "*****",
+        "basic_password": "*****",
+        "basic_username": "*****",
+        "display_name": "OrionTechAmp"
+      }
+    },
+    "definition_runtime_user_01K8V77KQSJ241Z7Tu1OQZqujEIfdxvZTeZ": {
+      "unique_name": "definition_runtime_user_01K8V77KQSJ241Z7Tu1OQZqujEIfdxvZTeZ",
+      "name": "Lake Products AMP API Keys",
+      "title": "Lake Products AMP API Keys",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "*****",
+        "basic_password": "*****",
+        "basic_username": "*****",
+        "display_name": "Lake Products AMP API Keys"
+      }
+    }
+  },
+  "table_types": {
+    "tabletype_01KQR52ZQ27NB2ygbjR9Sb4jZw8j0KgLixV": {
+      "unique_name": "tabletype_01KQR52ZQ27NB2ygbjR9Sb4jZw8j0KgLixV",
+      "data_type": "datatype.tabletype",
+      "display_name": "Table1",
+      "columns": [
+        {
+          "is_required": true,
+          "name": "total",
+          "title": "total",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    },
+    "tabletype_01KRHWROCFMBD2YFH21djtXQpC0PAwh17Nf": {
+      "unique_name": "tabletype_01KRHWROCFMBD2YFH21djtXQpC0PAwh17Nf",
+      "data_type": "datatype.tabletype",
+      "display_name": "MSSP_SCD_List",
+      "columns": [
+        {
+          "name": "guid",
+          "title": "SCD_GUID",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "title": "SCD_Name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    },
+    "tabletype_01KSDRBMZCSAX6bielcYZ3n3VrIqViU9tNX": {
+      "unique_name": "tabletype_01KSDRBMZCSAX6bielcYZ3n3VrIqViU9tNX",
+      "data_type": "datatype.tabletype",
+      "display_name": "mssp_block_all",
+      "columns": [
+        {
+          "name": "guid",
+          "title": "guid",
+          "type": "string"
+        },
+        {
+          "name": "name",
+          "title": "name",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    }
+  }
+}
