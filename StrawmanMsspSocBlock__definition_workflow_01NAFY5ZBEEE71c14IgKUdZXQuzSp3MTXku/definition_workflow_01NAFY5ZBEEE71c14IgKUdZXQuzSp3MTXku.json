@@ -7,6 +7,19 @@
     "base_type": "workflow",
     "variables": [
       {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "observable_type",
+          "type": "datatype.string",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01NAFY5Z3JEDI3FXdm3ivNr6dOvbKS2ZX7A",
+        "object_type": "variable_workflow"
+      },
+      {
         "schema_id": "datatype.integer",
         "properties": {
           "scope": "output",
@@ -16,43 +29,6 @@
           "is_invisible": false
         },
         "unique_name": "variable_workflow_01NAFY5Z3JFH32obg3SN6HcG4ZwJBIvAm1s",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "tabletype_01KQR52ZQ27NB2ygbjR9Sb4jZw8j0KgLixV",
-        "properties": {
-          "value": [
-            {
-              "column_data": {
-                "total": "total"
-              }
-            },
-            {
-              "column_data": {
-                "total": "response"
-              }
-            }
-          ],
-          "scope": "local",
-          "name": "tableHolder",
-          "type": "datatype.table",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01NAFY5Z3JB1Y6HuTJUEOUwR5tLTR3txwUA",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "count",
-          "type": "datatype.string",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01NAFY5Z3J9WC0TMxQXx0bFn0S33JQeZb8G",
         "object_type": "variable_workflow"
       },
       {
@@ -73,51 +49,13 @@
         "schema_id": "datatype.string",
         "properties": {
           "value": "",
-          "scope": "input",
-          "name": "observable_type",
-          "type": "datatype.string",
-          "is_required": true,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01NAFY5Z3JEDI3FXdm3ivNr6dOvbKS2ZX7A",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "tabletype_01ND4LHKDE9XH1strG3mk9NDnkING5ay9RN",
-        "properties": {
           "scope": "output",
-          "name": "MSSP Customer Name Auth SCD File-Guid",
-          "type": "datatype.table",
-          "description": "get MSSP cust guid from Global var",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01ND4M3I67PFE42Kadam3AsU7pX0kobZeCu",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "local",
-          "name": "MSSP_SCD",
+          "name": "output json",
           "type": "datatype.string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01NAFY5Z3J8O863cXwWUxuxyUECwrvxJgyN",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "tabletype_01KRHWROCFMBD2YFH21djtXQpC0PAwh17Nf",
-        "properties": {
-          "scope": "local",
-          "name": "mssp_scd_list",
-          "type": "datatype.table",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01NAFY5Z3JGL32rR5KJMJDvgRo8SFeRmSeL",
+        "unique_name": "variable_workflow_01NAFY5Z3J3L860Dz7dBcPwUO9fN84CoYDN",
         "object_type": "variable_workflow"
       },
       {
@@ -131,31 +69,6 @@
           "is_invisible": false
         },
         "unique_name": "variable_workflow_01NAFY5Z3JDAD3e4ZVnB3sYKSqPC6crf6HG",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "tabletype_01KSDRBMZCSAX6bielcYZ3n3VrIqViU9tNX",
-        "properties": {
-          "scope": "output",
-          "name": "mssp_block_all",
-          "type": "datatype.table",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01NAFY5Z3JC6H6SPtYRRzY7OUKn6jznunyb",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "output",
-          "name": "output json",
-          "type": "datatype.string",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01NAFY5Z3J3L860Dz7dBcPwUO9fN84CoYDN",
         "object_type": "variable_workflow"
       }
     ],
@@ -307,7 +220,7 @@
             "properties": {
               "action_timeout": 180,
               "allow_auto_redirect": true,
-              "continue_on_error_status_code": false,
+              "continue_on_error_status_code": true,
               "continue_on_failure": false,
               "custom_headers": [
                 {
@@ -562,59 +475,6 @@
     }
   },
   "table_types": {
-    "tabletype_01KQR52ZQ27NB2ygbjR9Sb4jZw8j0KgLixV": {
-      "unique_name": "tabletype_01KQR52ZQ27NB2ygbjR9Sb4jZw8j0KgLixV",
-      "data_type": "datatype.tabletype",
-      "display_name": "Table1",
-      "columns": [
-        {
-          "is_required": true,
-          "name": "total",
-          "title": "total",
-          "type": "string"
-        }
-      ],
-      "base_type": "datatype",
-      "object_type": "tabletype"
-    },
-    "tabletype_01KRHWROCFMBD2YFH21djtXQpC0PAwh17Nf": {
-      "unique_name": "tabletype_01KRHWROCFMBD2YFH21djtXQpC0PAwh17Nf",
-      "data_type": "datatype.tabletype",
-      "display_name": "MSSP_SCD_List",
-      "columns": [
-        {
-          "name": "guid",
-          "title": "SCD_GUID",
-          "type": "string"
-        },
-        {
-          "name": "name",
-          "title": "SCD_Name",
-          "type": "string"
-        }
-      ],
-      "base_type": "datatype",
-      "object_type": "tabletype"
-    },
-    "tabletype_01KSDRBMZCSAX6bielcYZ3n3VrIqViU9tNX": {
-      "unique_name": "tabletype_01KSDRBMZCSAX6bielcYZ3n3VrIqViU9tNX",
-      "data_type": "datatype.tabletype",
-      "display_name": "mssp_block_all",
-      "columns": [
-        {
-          "name": "guid",
-          "title": "guid",
-          "type": "string"
-        },
-        {
-          "name": "name",
-          "title": "name",
-          "type": "string"
-        }
-      ],
-      "base_type": "datatype",
-      "object_type": "tabletype"
-    },
     "tabletype_01L0MWTPNG9LB0wNdXvayKxmQXu8O0CK94X": {
       "unique_name": "tabletype_01L0MWTPNG9LB0wNdXvayKxmQXu8O0CK94X",
       "data_type": "datatype.tabletype",
@@ -631,30 +491,6 @@
           "is_required": true,
           "name": "encoded_api_credentials",
           "title": "Encoded API Credentials",
-          "type": "string"
-        }
-      ],
-      "base_type": "datatype",
-      "object_type": "tabletype"
-    },
-    "tabletype_01ND4LHKDE9XH1strG3mk9NDnkING5ay9RN": {
-      "unique_name": "tabletype_01ND4LHKDE9XH1strG3mk9NDnkING5ay9RN",
-      "data_type": "datatype.tabletype",
-      "display_name": "MSSP Customer Name Auth File Guid",
-      "columns": [
-        {
-          "name": "EncAuth",
-          "title": "EncAuth",
-          "type": "string"
-        },
-        {
-          "name": "SCD_Guid",
-          "title": "SCD GUID",
-          "type": "string"
-        },
-        {
-          "name": "CustName",
-          "title": "Customer Name",
           "type": "string"
         }
       ],
