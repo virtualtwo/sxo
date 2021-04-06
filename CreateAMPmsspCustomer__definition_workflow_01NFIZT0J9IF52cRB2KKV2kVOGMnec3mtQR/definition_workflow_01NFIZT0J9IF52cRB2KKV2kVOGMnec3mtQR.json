@@ -1,0 +1,253 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR",
+    "name": "Create Secure Endpoint (AMP) Customer  for MSSP",
+    "title": "Create Secure Endpoint (AMP) Customer  for MSSP",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "password",
+          "type": "datatype.string",
+          "description": "Password used for the first user’s Cisco Security Account.\nThis will be removed in the future.",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01NFKZWFUUN7I1P9CgyBpCAo3NeJtvcqtw2",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "email",
+          "type": "datatype.string",
+          "description": "Email address of the first user being created.  Must be unique emai-id.  Potential use \"example+cust1@domain.com\" to differentiate unique email-id from other AMP cloud instances.",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01NFKYH7SF2HW04yk6t0zqP1sNhxnfDZlsc",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "first_name",
+          "type": "datatype.string",
+          "description": "First name of the first user being created.",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01NFL0USWFID001jI3cLIBrZAhoC5rWee1y",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "business_name",
+          "type": "datatype.string",
+          "description": "Name of the organization being created.",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01NFL1RGO67553WwAtgxAwY61OSPJA4eP2V",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "last_name",
+          "type": "datatype.string",
+          "description": "Last name of the first user being created.",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01NFL1AF76OFM7RbVftte5UOFSg4EHyQFC9",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Create Secure Endpoint (AMP) Customer  for MSSP",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01NFLS9OZ8SFO2iuL7QJPPug7yoE5BmM8Ke",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_01NFJ2P02JTNE1QW61cImUs0KRc1WRuPTWu",
+        "name": "HTTP Request",
+        "title": "Post new Customer",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "accept": "application/json",
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "body": "{\n  \"email\": \"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01NFKYH7SF2HW04yk6t0zqP1sNhxnfDZlsc$\",\n  \"password\": \"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01NFKZWFUUN7I1P9CgyBpCAo3NeJtvcqtw2$\",\n  \"first_name\": \"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01NFL0USWFID001jI3cLIBrZAhoC5rWee1y$\",\n  \"last_name\": \"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01NFL1AF76OFM7RbVftte5UOFSg4EHyQFC9$\",\n  \"business_name\": \"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01NFL1RGO67553WwAtgxAwY61OSPJA4eP2V$\"\n}",
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "Post new Customer",
+          "method": "POST",
+          "relative_url": "customers",
+          "runtime_user": {
+            "override_target_runtime_user": false,
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": false,
+            "override_workflow_target_group_criteria": false,
+            "use_workflow_target": true,
+            "use_workflow_target_group": false
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_01NFL5E8A8ATU56XvCDkyUfvHnCggzskFb8",
+        "name": "Condition Block",
+        "title": "Status Code 200?",
+        "type": "logic.if_else",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Status Code 200?",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_01NFL5EM3ZH9V5LmQu0Dydd12RwjjfcSIHT",
+            "name": "Condition Branch",
+            "title": "Post Success",
+            "type": "logic.condition_block",
+            "base_type": "activity",
+            "properties": {
+              "condition": {
+                "left_operand": "$activity.definition_activity_01NFJ2P02JTNE1QW61cImUs0KRc1WRuPTWu.output.status_code$",
+                "operator": "eq",
+                "right_operand": 200
+              },
+              "continue_on_failure": false,
+              "display_name": "Post Success",
+              "skip_execution": false
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_01NFLBPUCN0OA6Ngm7S25ccekEBwfzuPXpi",
+                "name": "Completed",
+                "title": "Post Failure-401 Authentication Error",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "continue_on_failure": false,
+                  "display_name": "Post Failure-401 Authentication Error",
+                  "result_message": "Error in authentication or Unauthorized. You should\nconfirm you are using Read \u0026 Write API Credentials.",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01NFL6XZG8AUJ7gUaENdW7d1vOlfLWxBmqM",
+                "name": "Completed",
+                "title": "Post Failure 202-Email Address Incorrect",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "continue_on_failure": false,
+                  "description": "Email already exists.",
+                  "display_name": "Post Failure 202-Email Address Incorrect",
+                  "result_message": "Try another email address, like admin+cust2@domain.com",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01NJUS6OKLUEC2mWwAAc8oHKouGtVTEIqaB",
+                "name": "Completed",
+                "title": "Post Failure 422 - Password Requirements",
+                "type": "logic.completed",
+                "base_type": "activity",
+                "properties": {
+                  "completion_type": "failed-completed",
+                  "continue_on_failure": false,
+                  "description": "Validation failed: New Password must contain at least one upper case character., New Password must contain at least one numeric character., New Password must contain at least one of these following special characters: !\\\"#$%\\u0026'()*+,-./:;\\u003c=\\u003e? @[\\\\]^_`{|}~\"",
+                  "display_name": "Post Failure 422 - Password Requirements",
+                  "result_message": "Try another email address, like admin+cust2@domain.com",
+                  "skip_execution": false
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01NFLS9OZ8SFO2iuL7QJPPug7yoE5BmM8Ke": {
+      "unique_name": "definition_target_01NFLS9OZ8SFO2iuL7QJPPug7yoE5BmM8Ke",
+      "name": "MSSP7",
+      "title": "MSSP7",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01NFJ2ASZE5Y20667vYjDdmW0uWOxQvNlSd",
+        "description": "Secure Endpoint MSSP API",
+        "disable_certificate_validation": false,
+        "display_name": "MSSP7",
+        "host": "api.amp.cisco.com",
+        "ignore_proxy": false,
+        "no_runtime_user": false,
+        "path": "/v1/mssp/",
+        "port": 443,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01NFJ2ASZE5Y20667vYjDdmW0uWOxQvNlSd": {
+      "unique_name": "definition_runtime_user_01NFJ2ASZE5Y20667vYjDdmW0uWOxQvNlSd",
+      "name": "MSSP7_API_KEYS",
+      "title": "MSSP7_API_KEYS",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "*****",
+        "basic_password": "*****",
+        "basic_username": "*****",
+        "display_name": "MSSP7_API_KEYS"
+      }
+    }
+  }
+}
