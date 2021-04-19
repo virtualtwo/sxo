@@ -7,20 +7,6 @@
     "base_type": "workflow",
     "variables": [
       {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "input",
-          "name": "sha256",
-          "type": "datatype.string",
-          "description": "input sha256",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01NAFY5Z3J7EG3XzCW4VT0iZCHiKgxQgesW",
-        "object_type": "variable_workflow"
-      },
-      {
         "schema_id": "datatype.integer",
         "properties": {
           "scope": "output",
@@ -33,28 +19,42 @@
         "object_type": "variable_workflow"
       },
       {
-        "schema_id": "tabletype_01KQR52ZQ27NB2ygbjR9Sb4jZw8j0KgLixV",
+        "schema_id": "tabletype_01NUWQ5SQXQXK7b8Bz4M7U6K9DZnGMDeQXZ",
         "properties": {
-          "value": [
-            {
-              "column_data": {
-                "total": "customer_name"
-              }
-            },
-            {
-              "column_data": {
-                "total": "result"
-              }
-            }
-          ],
-          "scope": "input",
-          "name": "SCD_Update_Results",
+          "scope": "output",
+          "name": "Success CustomerNameList",
           "type": "datatype.table",
-          "description": "This table is used to present results of posting SCD to customers MSSP_SOC_BLOCK list",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01NUU1R9B69L54Y1wiQcVlaSIfzwCICRBUu",
+        "unique_name": "variable_workflow_01NUWQGMCXHU02cgpl6Ef5VC6JFBUuLck3p",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "observable_value",
+          "type": "datatype.string",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01NAFY5Z3JDAD3e4ZVnB3sYKSqPC6crf6HG",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "sha256",
+          "type": "datatype.string",
+          "description": "input sha256",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01NAFY5Z3J7EG3XzCW4VT0iZCHiKgxQgesW",
         "object_type": "variable_workflow"
       },
       {
@@ -71,6 +71,18 @@
         "object_type": "variable_workflow"
       },
       {
+        "schema_id": "tabletype_01NUWQ5SQXQXK7b8Bz4M7U6K9DZnGMDeQXZ",
+        "properties": {
+          "scope": "output",
+          "name": "Failed CustomerNameList",
+          "type": "datatype.table",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01NUXCJLEHKCH401M1hKFFvdfVZLraQzhFE",
+        "object_type": "variable_workflow"
+      },
+      {
         "schema_id": "datatype.string",
         "properties": {
           "value": "",
@@ -81,19 +93,6 @@
           "is_invisible": false
         },
         "unique_name": "variable_workflow_01NAFY5Z3JEDI3FXdm3ivNr6dOvbKS2ZX7A",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "input",
-          "name": "observable_value",
-          "type": "datatype.string",
-          "is_required": true,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01NAFY5Z3JDAD3e4ZVnB3sYKSqPC6crf6HG",
         "object_type": "variable_workflow"
       }
     ],
@@ -332,14 +331,23 @@
                 "object_type": "definition_activity",
                 "actions": [
                   {
-                    "unique_name": "definition_activity_01NUV435P21DR57PovvgY7KAivDKtQtDmSH",
-                    "name": "Continue",
-                    "title": "Continue",
-                    "type": "logic.continue",
+                    "unique_name": "definition_activity_01NUWQVUA69T72p0zJ6p4VZkW3nYklm8E3x",
+                    "name": "Add Row to Table",
+                    "title": "Add Row to Success Table",
+                    "type": "core.addrowtotable",
                     "base_type": "activity",
                     "properties": {
+                      "action_timeout": 180,
                       "continue_on_failure": false,
-                      "display_name": "Continue",
+                      "display_name": "Add Row to Success Table",
+                      "input_table": "$workflow.definition_workflow_01NAFY5ZBEEE71c14IgKUdZXQuzSp3MTXku.output.variable_workflow_01NUWQGMCXHU02cgpl6Ef5VC6JFBUuLck3p$",
+                      "row": [
+                        {
+                          "key": "cust_name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01NCZDZ7Y3PZK7c6kFm6idykhyK2QuQOiq6.input.source_array[@].customer_name$"
+                        }
+                      ],
                       "skip_execution": false
                     },
                     "object_type": "definition_activity"
@@ -365,14 +373,23 @@
                 "object_type": "definition_activity",
                 "actions": [
                   {
-                    "unique_name": "definition_activity_01NUV4UA0NR7H7Kj1t90Zn2X47kcBFv3IFL",
-                    "name": "Continue",
-                    "title": "Continue",
-                    "type": "logic.continue",
+                    "unique_name": "definition_activity_01NUXCYTHNAZ856F8kOIbv0foAPJTgCSeuj",
+                    "name": "Add Row to Table",
+                    "title": "Add Row to Failed Table",
+                    "type": "core.addrowtotable",
                     "base_type": "activity",
                     "properties": {
+                      "action_timeout": 180,
                       "continue_on_failure": false,
-                      "display_name": "Continue",
+                      "display_name": "Add Row to Failed Table",
+                      "input_table": "$workflow.definition_workflow_01NAFY5ZBEEE71c14IgKUdZXQuzSp3MTXku.output.variable_workflow_01NUXCJLEHKCH401M1hKFFvdfVZLraQzhFE$",
+                      "row": [
+                        {
+                          "key": "cust_name",
+                          "type": "string",
+                          "value": "$activity.definition_activity_01NCZDZ7Y3PZK7c6kFm6idykhyK2QuQOiq6.input.source_array[@].customer_name$"
+                        }
+                      ],
                       "skip_execution": false
                     },
                     "object_type": "definition_activity"
@@ -619,21 +636,6 @@
     }
   },
   "table_types": {
-    "tabletype_01KQR52ZQ27NB2ygbjR9Sb4jZw8j0KgLixV": {
-      "unique_name": "tabletype_01KQR52ZQ27NB2ygbjR9Sb4jZw8j0KgLixV",
-      "data_type": "datatype.tabletype",
-      "display_name": "Table1",
-      "columns": [
-        {
-          "is_required": true,
-          "name": "total",
-          "title": "total",
-          "type": "string"
-        }
-      ],
-      "base_type": "datatype",
-      "object_type": "tabletype"
-    },
     "tabletype_01L0MWTPNG9LB0wNdXvayKxmQXu8O0CK94X": {
       "unique_name": "tabletype_01L0MWTPNG9LB0wNdXvayKxmQXu8O0CK94X",
       "data_type": "datatype.tabletype",
@@ -650,6 +652,20 @@
           "is_required": true,
           "name": "encoded_api_credentials",
           "title": "Encoded API Credentials",
+          "type": "string"
+        }
+      ],
+      "base_type": "datatype",
+      "object_type": "tabletype"
+    },
+    "tabletype_01NUWQ5SQXQXK7b8Bz4M7U6K9DZnGMDeQXZ": {
+      "unique_name": "tabletype_01NUWQ5SQXQXK7b8Bz4M7U6K9DZnGMDeQXZ",
+      "data_type": "datatype.tabletype",
+      "display_name": "VerifiedCustSCDupdated",
+      "columns": [
+        {
+          "name": "cust_name",
+          "title": "cust_name",
           "type": "string"
         }
       ],
