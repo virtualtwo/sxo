@@ -11,20 +11,6 @@
         "properties": {
           "value": "",
           "scope": "input",
-          "name": "password",
-          "type": "datatype.string",
-          "description": "Password used for the first user’s Cisco Security Account.\nThis will be removed in the future.",
-          "is_required": true,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01NFKZWFUUN7I1P9CgyBpCAo3NeJtvcqtw2",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
-          "scope": "input",
           "name": "email",
           "type": "datatype.string",
           "description": "Email address of the first user being created.  Must be unique emai-id.  Potential use \"example+cust1@domain.com\" to differentiate unique email-id from other AMP cloud instances.",
@@ -39,13 +25,13 @@
         "properties": {
           "value": "",
           "scope": "input",
-          "name": "first_name",
+          "name": "password",
           "type": "datatype.string",
-          "description": "First name of the first user being created.",
-          "is_required": true,
+          "description": "Not mandatory",
+          "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01NFL0USWFID001jI3cLIBrZAhoC5rWee1y",
+        "unique_name": "variable_workflow_01SCHLEPPNSDN2IEkPKIQp4weFJL8tS2Osl",
         "object_type": "variable_workflow"
       },
       {
@@ -67,6 +53,20 @@
         "properties": {
           "value": "",
           "scope": "input",
+          "name": "first_name",
+          "type": "datatype.string",
+          "description": "First name of the first user being created.",
+          "is_required": true,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01NFL0USWFID001jI3cLIBrZAhoC5rWee1y",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
           "name": "last_name",
           "type": "datatype.string",
           "description": "Last name of the first user being created.",
@@ -74,6 +74,20 @@
           "is_invisible": false
         },
         "unique_name": "variable_workflow_01NFL1AF76OFM7RbVftte5UOFSg4EHyQFC9",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "input",
+          "name": "payment_state_id",
+          "type": "datatype.string",
+          "description": "1 = licensed, 2 = Evaluation",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01SCHCURSJ5J27YhHM9NGA38CGoRjhuafoA",
         "object_type": "variable_workflow"
       }
     ],
@@ -104,7 +118,7 @@
           "accept": "application/json",
           "action_timeout": 180,
           "allow_auto_redirect": true,
-          "body": "{\n  \"email\": \"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01NFKYH7SF2HW04yk6t0zqP1sNhxnfDZlsc$\",\n  \"password\": \"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01NFKZWFUUN7I1P9CgyBpCAo3NeJtvcqtw2$\",\n  \"first_name\": \"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01NFL0USWFID001jI3cLIBrZAhoC5rWee1y$\",\n  \"last_name\": \"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01NFL1AF76OFM7RbVftte5UOFSg4EHyQFC9$\",\n  \"business_name\": \"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01NFL1RGO67553WwAtgxAwY61OSPJA4eP2V$\"\n}",
+          "body": "{\n \"email\":\"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01NFKYH7SF2HW04yk6t0zqP1sNhxnfDZlsc$\",\n \"password\":\"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01SCHLEPPNSDN2IEkPKIQp4weFJL8tS2Osl$\",\n \"first_name\":\"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01NFL0USWFID001jI3cLIBrZAhoC5rWee1y$\",\n \"last_name\":\"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01NFL1AF76OFM7RbVftte5UOFSg4EHyQFC9$\",\n \"business_name\":\"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01NFL1RGO67553WwAtgxAwY61OSPJA4eP2V$\",\n \"payment_state_id\":\"$workflow.definition_workflow_01NFIZT0J9IF52cRB2KKV2kVOGMnec3mtQR.input.variable_workflow_01SCHCURSJ5J27YhHM9NGA38CGoRjhuafoA$\"\n}",
           "content_type": "application/json",
           "continue_on_error_status_code": false,
           "continue_on_failure": false,
