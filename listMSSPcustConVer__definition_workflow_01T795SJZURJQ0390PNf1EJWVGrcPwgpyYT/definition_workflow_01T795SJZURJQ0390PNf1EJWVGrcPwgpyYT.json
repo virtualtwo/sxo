@@ -7,27 +7,16 @@
     "base_type": "workflow",
     "variables": [
       {
-        "schema_id": "tabletype_01T79AHKMYASF11Afzkua2ZHkDgPr32dYe1",
+        "schema_id": "datatype.string",
         "properties": {
-          "scope": "output",
-          "name": "Connector Version Table1",
-          "type": "datatype.table",
+          "value": "Y2lzY29zcGFyazovL3VzL1JPT00vYTY2MDllMjAtNWQxYy0xMWVjLTgwOWMtZmRjN2MzMWQxYWJj",
+          "scope": "local",
+          "name": "Webex_TeamID",
+          "type": "datatype.string",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01T79BD6YQT0T2TUVtJXx9eOdxeBCimNxQE",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "tabletype_01T7AH529XSNN2yfbJ3EJ4n4pykPZjAHXLm",
-        "properties": {
-          "scope": "output",
-          "name": "Conn Ver Table2",
-          "type": "datatype.table",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01T7AHK1DHBPA07ft5fkcfyYqbfZVIkLGV2",
+        "unique_name": "variable_workflow_01TICDD7P1Q5L7hBxoUIxyiP2n8ygA6XHYG",
         "object_type": "variable_workflow"
       },
       {
@@ -45,6 +34,18 @@
         "object_type": "variable_workflow"
       },
       {
+        "schema_id": "tabletype_01T7AH529XSNN2yfbJ3EJ4n4pykPZjAHXLm",
+        "properties": {
+          "scope": "output",
+          "name": "Conn Ver Table2",
+          "type": "datatype.table",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01T7AHK1DHBPA07ft5fkcfyYqbfZVIkLGV2",
+        "object_type": "variable_workflow"
+      },
+      {
         "schema_id": "tabletype_01T85DGBMYW6Q2eRbGRBNvOOTUVT23sL3rY",
         "properties": {
           "scope": "output",
@@ -54,6 +55,31 @@
           "is_invisible": false
         },
         "unique_name": "variable_workflow_01T85DYJMBGF836uAie5lQotvzIx0v2749g",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "tabletype_01T79AHKMYASF11Afzkua2ZHkDgPr32dYe1",
+        "properties": {
+          "scope": "output",
+          "name": "Connector Version Table1",
+          "type": "datatype.table",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01T79BD6YQT0T2TUVtJXx9eOdxeBCimNxQE",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "M2JmYzA5YTktNzNhOS00YTFkLThkNzUtODI0MGYxMzdkZDU4M2I3NDUyNTUtOTk0_PF84_1eb65fdf-9643-417f-9974-ad72cae0e10f",
+          "scope": "local",
+          "name": "Webex_bot",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01TE4LWSSNABI0GP6OcrvXVF2XXmjUX99J1",
         "object_type": "variable_workflow"
       },
       {
@@ -204,6 +230,38 @@
             "object_type": "definition_activity"
           },
           {
+            "unique_name": "definition_activity_01TD657E0CPK14r0ra4hdozI6EmVWElnu9R",
+            "name": "Select from Table",
+            "title": "Identify all non-standard version \u0026 hosts",
+            "type": "core.selectfromtable",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "columns": [
+                {
+                  "column_name": "connector_version",
+                  "column_type": "string"
+                },
+                {
+                  "column_name": "hostname",
+                  "column_type": "string"
+                }
+              ],
+              "continue_on_failure": false,
+              "display_name": "Identify all non-standard version \u0026 hosts",
+              "input_table": "$activity.definition_activity_01T79OD289ENH60u4eC1jjGlPeozRKnKmRt.output.read_table_from_json$",
+              "number_of_rows": {
+                "all_rows": true
+              },
+              "persist_output": true,
+              "skip_execution": false,
+              "sorting": {
+                "no_sort": true
+              }
+            },
+            "object_type": "definition_activity"
+          },
+          {
             "unique_name": "definition_activity_01TD5IPQRL33M3CKPrZcutayhb89vmW2UfH",
             "name": "For Each",
             "title": "For Each non-standard version",
@@ -213,42 +271,10 @@
               "continue_on_failure": false,
               "display_name": "For Each non-standard version",
               "skip_execution": false,
-              "source_array": "$activity.definition_activity_01T79OD289ENH60u4eC1jjGlPeozRKnKmRt.output.read_table_from_json$"
+              "source_array": "$activity.definition_activity_01TD657E0CPK14r0ra4hdozI6EmVWElnu9R.output.output_table$"
             },
             "object_type": "definition_activity",
             "actions": [
-              {
-                "unique_name": "definition_activity_01TD657E0CPK14r0ra4hdozI6EmVWElnu9R",
-                "name": "Select from Table",
-                "title": "Identify all non-standard version \u0026 hosts",
-                "type": "core.selectfromtable",
-                "base_type": "activity",
-                "properties": {
-                  "action_timeout": 180,
-                  "columns": [
-                    {
-                      "column_name": "connector_version",
-                      "column_type": "string"
-                    },
-                    {
-                      "column_name": "hostname",
-                      "column_type": "string"
-                    }
-                  ],
-                  "continue_on_failure": false,
-                  "display_name": "Identify all non-standard version \u0026 hosts",
-                  "input_table": "$activity.definition_activity_01T79OD289ENH60u4eC1jjGlPeozRKnKmRt.output.read_table_from_json$",
-                  "number_of_rows": {
-                    "all_rows": true
-                  },
-                  "persist_output": true,
-                  "skip_execution": false,
-                  "sorting": {
-                    "no_sort": true
-                  }
-                },
-                "object_type": "definition_activity"
-              },
               {
                 "unique_name": "definition_activity_01TD5V0CJE0YD1YkNSZd7tAA5G9hi004Xdn",
                 "name": "Add Row to Table",
@@ -281,26 +307,51 @@
                   "skip_execution": false
                 },
                 "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01TJWY1MOW1HV5Q4qFtdCZeOZfbkaKkKG0H",
+                "name": "Webex Teams - Post Message to Room",
+                "title": "Webex Teams - Post Message to Room",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "continue_on_failure": true,
+                  "display_name": "Webex Teams - Post Message to Room",
+                  "input": {
+                    "variable_workflow_01PP78DJH1TI76BYfsu9g0Tqj2S6cUxjtu5": "Y2lzY29zcGFyazovL3VzL1JPT00vYTY2MDllMjAtNWQxYy0xMWVjLTgwOWMtZmRjN2MzMWQxYWJj",
+                    "variable_workflow_01PP78DJH1XNQ7gNQ5iZdperRHqrppzARXC": "$workflow.definition_workflow_01T795SJZURJQ0390PNf1EJWVGrcPwgpyYT.local.variable_workflow_01TE4LWSSNABI0GP6OcrvXVF2XXmjUX99J1$",
+                    "variable_workflow_01PP78DJH1YWL3allalGQbg1VkgKwh9GvCi": "",
+                    "variable_workflow_01PP78DJH22BB3Ej3I8tJ4OCQur0unYGjj9": "CustomerName: $activity.definition_activity_01T7C6NR0CB147CWGrBzWfuc4FQZ6ih0UJU.input.source_array[@].customer_name$ Hostname: $activity.definition_activity_01TD5IPQRL33M3CKPrZcutayhb89vmW2UfH.input.source_array[@].hostname$ Version: $activity.definition_activity_01TD5IPQRL33M3CKPrZcutayhb89vmW2UfH.input.source_array[@].connector_version$",
+                    "variable_workflow_01SVERQNMKN8N6vqX2djMtAfshphGydGsH8": ""
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "override_workflow_target": true,
+                    "target_id": "definition_target_01J27GU3SPR3P0xtU7MFX5wC1DlmUaeXL0z",
+                    "target_type": "web-service.endpoint"
+                  },
+                  "workflow_id": "definition_workflow_01PP78DJMXS415nTjonujf03ROkr6t2PNyw"
+                },
+                "object_type": "definition_activity"
+              },
+              {
+                "unique_name": "definition_activity_01TK2NEYAUW6J2wJwnj7iOLyF5aFqE7qfwF",
+                "name": "Sleep",
+                "title": "Sleep",
+                "type": "core.sleep",
+                "base_type": "activity",
+                "properties": {
+                  "continue_on_failure": false,
+                  "display_name": "Sleep",
+                  "skip_execution": false,
+                  "sleep_interval": 2
+                },
+                "object_type": "definition_activity"
               }
             ]
-          },
-          {
-            "unique_name": "definition_activity_01TD3KBCGSJFZ2uYocAo6PTTgAEZpSKWGOg",
-            "name": "Delete from Table",
-            "title": "Clear for other loops",
-            "type": "core.deleterowfromtable",
-            "base_type": "activity",
-            "properties": {
-              "action_timeout": 180,
-              "continue_on_failure": false,
-              "display_name": "Clear for other loops",
-              "input_table": "$activity.definition_activity_01T79OD289ENH60u4eC1jjGlPeozRKnKmRt.output.read_table_from_json$",
-              "rows": {
-                "all_rows": true
-              },
-              "skip_execution": false
-            },
-            "object_type": "definition_activity"
           }
         ]
       }
@@ -335,6 +386,23 @@
         "host": "api.amp.cisco.com",
         "no_runtime_user": true,
         "path": "/v1",
+        "port": 443,
+        "protocol": "https"
+      }
+    },
+    "definition_target_01J27GU3SPR3P0xtU7MFX5wC1DlmUaeXL0z": {
+      "unique_name": "definition_target_01J27GU3SPR3P0xtU7MFX5wC1DlmUaeXL0z",
+      "name": "Webex Teams",
+      "title": "Webex Teams",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "description": "Webex Teams",
+        "disable_certificate_validation": false,
+        "display_name": "Webex Teams",
+        "host": "webexapis.com",
+        "no_runtime_user": true,
         "port": 443,
         "protocol": "https"
       }
@@ -518,14 +586,14 @@
       "columns": [
         {
           "is_required": true,
-          "name": "encoded_api_credentials",
-          "title": "Encoded API Credentials",
+          "name": "customer_name",
+          "title": "Customer Name",
           "type": "string"
         },
         {
           "is_required": true,
-          "name": "customer_name",
-          "title": "Customer Name",
+          "name": "encoded_api_credentials",
+          "title": "Encoded API Credentials",
           "type": "string"
         }
       ],
@@ -581,6 +649,11 @@
       "display_name": "Cust Conn Ver3",
       "columns": [
         {
+          "name": "Conn_Ver",
+          "title": "Connector Version",
+          "type": "string"
+        },
+        {
           "name": "Customer",
           "title": "Customer",
           "type": "string"
@@ -588,11 +661,6 @@
         {
           "name": "Hostname",
           "title": "Hostname",
-          "type": "string"
-        },
-        {
-          "name": "Conn_Ver",
-          "title": "Connector Version",
           "type": "string"
         }
       ],
@@ -605,18 +673,21 @@
       "display_name": "ConVerLocal",
       "columns": [
         {
-          "name": "hostname",
-          "title": "hostname",
+          "name": "ConVer",
+          "title": "ConVer",
           "type": "string"
         },
         {
-          "name": "ConVer",
-          "title": "ConVer",
+          "name": "hostname",
+          "title": "hostname",
           "type": "string"
         }
       ],
       "base_type": "datatype",
       "object_type": "tabletype"
     }
-  }
+  },
+  "atomic_workflows": [
+    "definition_workflow_01PP78DJMXS415nTjonujf03ROkr6t2PNyw"
+  ]
 }
