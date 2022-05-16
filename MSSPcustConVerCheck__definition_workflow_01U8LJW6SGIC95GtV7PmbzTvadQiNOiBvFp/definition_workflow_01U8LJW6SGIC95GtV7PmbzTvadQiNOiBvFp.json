@@ -7,6 +7,18 @@
     "base_type": "workflow",
     "variables": [
       {
+        "schema_id": "tabletype_01TD382CIIYEP6XZnR7yI7iOb6cPSlXeM2b",
+        "properties": {
+          "scope": "local",
+          "name": "ConVerLocalTable",
+          "type": "datatype.table",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_01U8LJW76IZ4F6DIYIuhD4mH3G3IxeWlH4u",
+        "object_type": "variable_workflow"
+      },
+      {
         "schema_id": "tabletype_01T7AH529XSNN2yfbJ3EJ4n4pykPZjAHXLm",
         "properties": {
           "scope": "output",
@@ -31,15 +43,15 @@
         "object_type": "variable_workflow"
       },
       {
-        "schema_id": "tabletype_01TD382CIIYEP6XZnR7yI7iOb6cPSlXeM2b",
+        "schema_id": "tabletype_01T85DGBMYW6Q2eRbGRBNvOOTUVT23sL3rY",
         "properties": {
-          "scope": "local",
-          "name": "ConVerLocalTable",
+          "scope": "output",
+          "name": "Cust Conn Ver3",
           "type": "datatype.table",
           "is_required": false,
           "is_invisible": false
         },
-        "unique_name": "variable_workflow_01U8LJW76IZ4F6DIYIuhD4mH3G3IxeWlH4u",
+        "unique_name": "variable_workflow_01U8LJW76J8CO4BV26YCr1IgssWnQUurMru",
         "object_type": "variable_workflow"
       },
       {
@@ -55,18 +67,6 @@
         },
         "unique_name": "variable_workflow_01U8LJW76I5M56fnAboiAR7FhXc90NPFfv6",
         "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "tabletype_01T85DGBMYW6Q2eRbGRBNvOOTUVT23sL3rY",
-        "properties": {
-          "scope": "output",
-          "name": "Cust Conn Ver3",
-          "type": "datatype.table",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_01U8LJW76J8CO4BV26YCr1IgssWnQUurMru",
-        "object_type": "variable_workflow"
       }
     ],
     "properties": {
@@ -74,7 +74,7 @@
         "is_atomic": false
       },
       "delete_workflow_instance": false,
-      "description": "For MSSP partners to identity \"non-standard\" connector versions for all customers deployed and output exceptions to standard versions.",
+      "description": "For MSSP partners to identity \"non-standard\" connector versions for all customers deployed and output exceptions to standard versions.  ",
       "display_name": "Base-MSSP Customers Connector Version Check",
       "runtime_user": {
         "target_default": true
@@ -200,6 +200,38 @@
               "display_name": "Sleep",
               "skip_execution": false,
               "sleep_interval": 5
+            },
+            "object_type": "definition_activity"
+          },
+          {
+            "unique_name": "definition_activity_01U8PFUSWN5K506pXsSpp5v0CCm7otHrHmM",
+            "name": "Select from Table",
+            "title": "pre-Identify all non-standard version \u0026 hosts",
+            "type": "core.selectfromtable",
+            "base_type": "activity",
+            "properties": {
+              "action_timeout": 180,
+              "columns": [
+                {
+                  "column_name": "connector_version",
+                  "column_type": "string"
+                },
+                {
+                  "column_name": "hostname",
+                  "column_type": "string"
+                }
+              ],
+              "continue_on_failure": false,
+              "display_name": "pre-Identify all non-standard version \u0026 hosts",
+              "input_table": "$activity.definition_activity_01U8LJWH6U0GB321kOKTILtlEZoCv2NPTB4.output.read_table_from_json$",
+              "number_of_rows": {
+                "all_rows": true
+              },
+              "persist_output": true,
+              "skip_execution": false,
+              "sorting": {
+                "no_sort": true
+              }
             },
             "object_type": "definition_activity"
           },
@@ -344,7 +376,8 @@
                             "target_id": "definition_target_01J27GU3SPR3P0xtU7MFX5wC1DlmUaeXL0z",
                             "target_type": "web-service.endpoint"
                           },
-                          "workflow_id": "definition_workflow_01PP78DJMXS415nTjonujf03ROkr6t2PNyw"
+                          "workflow_id": "definition_workflow_01PP78DJMXS415nTjonujf03ROkr6t2PNyw",
+                          "workflow_name": "Webex - Post Message to Room"
                         },
                         "object_type": "definition_activity"
                       }
@@ -492,9 +525,9 @@
       "base_type": "runtime_user",
       "object_type": "definition_runtime_user",
       "properties": {
-        "auth_option": "*****",
+        "auth_option": "Basic",
         "basic_password": "*****",
-        "basic_username": "*****",
+        "basic_username": "8494a3fd925d5c33421d",
         "display_name": "dallong_amp"
       }
     },
@@ -506,9 +539,9 @@
       "base_type": "runtime_user",
       "object_type": "definition_runtime_user",
       "properties": {
-        "auth_option": "*****",
+        "auth_option": "Basic",
         "basic_password": "*****",
-        "basic_username": "*****",
+        "basic_username": "9cbf53ab924088418fdb",
         "display_name": "OrionTechAmp"
       }
     },
@@ -520,9 +553,9 @@
       "base_type": "runtime_user",
       "object_type": "definition_runtime_user",
       "properties": {
-        "auth_option": "*****",
+        "auth_option": "Basic",
         "basic_password": "*****",
-        "basic_username": "*****",
+        "basic_username": "af8c71e17c84392c1693",
         "display_name": "Lake Products AMP API Keys"
       }
     }
@@ -674,13 +707,13 @@
       "display_name": "Conn Table2",
       "columns": [
         {
-          "name": "connector_version",
-          "title": "Version",
+          "name": "hostname",
+          "title": "hostname",
           "type": "string"
         },
         {
-          "name": "hostname",
-          "title": "hostname",
+          "name": "connector_version",
+          "title": "Version",
           "type": "string"
         }
       ],
@@ -693,6 +726,11 @@
       "display_name": "Cust Conn Ver3",
       "columns": [
         {
+          "name": "Conn_Ver",
+          "title": "Connector Version",
+          "type": "string"
+        },
+        {
           "name": "Customer",
           "title": "Customer",
           "type": "string"
@@ -700,11 +738,6 @@
         {
           "name": "Hostname",
           "title": "Hostname",
-          "type": "string"
-        },
-        {
-          "name": "Conn_Ver",
-          "title": "Connector Version",
           "type": "string"
         }
       ],
@@ -717,13 +750,13 @@
       "display_name": "ConVerLocal",
       "columns": [
         {
-          "name": "hostname",
-          "title": "hostname",
+          "name": "ConVer",
+          "title": "ConVer",
           "type": "string"
         },
         {
-          "name": "ConVer",
-          "title": "ConVer",
+          "name": "hostname",
+          "title": "hostname",
           "type": "string"
         }
       ],
@@ -732,6 +765,9 @@
     }
   },
   "atomic_workflows": [
+    "definition_workflow_01PP78DJMXS415nTjonujf03ROkr6t2PNyw"
+  ],
+  "dependent_workflows": [
     "definition_workflow_01PP78DJMXS415nTjonujf03ROkr6t2PNyw"
   ]
 }
