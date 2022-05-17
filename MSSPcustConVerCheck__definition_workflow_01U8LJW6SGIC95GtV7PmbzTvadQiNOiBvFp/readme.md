@@ -15,7 +15,7 @@ Loop through each MSSP customer and do the following:
 1. Create Table with non-standard hosts
 1. Outputs non-standard hosts to table & Webex Teams room
 
-![MSSP_SOC_BLOCK_Workflow](/run wf input.png)
+![Workflow](/Run_Wf_Input.png)
 
 
 ## Required Global Variable
