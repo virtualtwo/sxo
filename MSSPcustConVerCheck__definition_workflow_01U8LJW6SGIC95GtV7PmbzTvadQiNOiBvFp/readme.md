@@ -15,7 +15,7 @@ Loop through each MSSP customer and do the following:
 1. Create Table with non-standard hosts
 1. Outputs non-standard hosts to table & Webex Teams room
 
-![MSSP_SOC_BLOCK_Workflow](/MSSP_block_diagram.png)
+![MSSP_SOC_BLOCK_Workflow](/run wf input.png)
 
 
 ## Required Global Variable
@@ -56,4 +56,4 @@ Import both workflows.
 
 
 ## Notes
-* In this workflow the named SCD List "MSSP_SOC_BLOCK" could be any name for the SCD, but it must be consistent across all customers to succeed.
+*
