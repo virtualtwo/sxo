@@ -41,19 +41,13 @@ Import both workflows.
 * AMP MSSP Customer Block List.json
 
 ## Running Workflow
+![Run Workflow](Run_Wf_Input.png)
 
-* SecureX Orchestration directly
-![SXO_RUN](/SXO_Run.png)
-
-* Threat Response context menu in SecureX Threat Response
-![SX_CTR](/SX_TR_ResponseAction.png)
-
-* SecureX browser plug-in.
-![SX_BROWSER](/SX_Browser_Response.png)
-
-* Secure Endpoint Customer/Tenant console
-![ENDPOINT_CONSOLE](/Endpoint_ResponseAction.png)
-
+## Workflow Outputs
+*Cust Conn Ver3 Table
+![Table_Output](SX0_Output_Table.png)
+* Webex Teams Output
+![WbxT_Output](WbxT_Output.png)
 
 ## Notes
-*
+*Webex Teams renders triplicates of non-standard connector versions.
