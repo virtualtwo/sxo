@@ -38,7 +38,7 @@ Browse to your SecureX orchestration instance. This will be a different URL depe
 
 Import both workflows.
 * Copy-ADD-AMP-MSSP-CREDS.json
-* AMP MSSP Customer Block List.json
+* MSSP Customers Connector Version Check-3.json
 
 ## Running Workflow
 ![Run Workflow](Run_Wf_Input.png)
@@ -49,5 +49,5 @@ Import both workflows.
 * Webex Teams Output
 ![WbxT_Output](WbxT_Output.png)
 
-## Notes
+## Known Issues
 *Webex Teams renders triplicates of non-standard connector versions.
