@@ -1,0 +1,243 @@
+{
+  "workflow": {
+    "unique_name": "definition_workflow_022925H7P5QD02bXldgb0cewIaNUvudpWrB",
+    "name": "Get MSSP Org ID's",
+    "title": "Get MSSP Org ID's",
+    "type": "generic.workflow",
+    "base_type": "workflow",
+    "variables": [
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Endpoint Tenant Token",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_0230CJ68PXDY94tRvhj8pgioGNdyK7rliRS",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.secure_string",
+        "properties": {
+          "value": "",
+          "scope": "local",
+          "name": "Threat Response Access Token",
+          "type": "datatype.secure_string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_02293GC2YVZ570aaYEj3SbevFxrzVxI2NAm",
+        "object_type": "variable_workflow"
+      }
+    ],
+    "properties": {
+      "atomic": {
+        "is_atomic": false
+      },
+      "delete_workflow_instance": false,
+      "display_name": "Get MSSP Org ID's",
+      "runtime_user": {
+        "target_default": true
+      },
+      "target": {
+        "target_type": "web-service.endpoint",
+        "target_id": "definition_target_01LYH2TNGIVL145yjq4b5IyRe7nsMVf273d",
+        "execute_on_workflow_target": true
+      }
+    },
+    "object_type": "definition_workflow",
+    "actions": [
+      {
+        "unique_name": "definition_activity_02293LRZK508R5vSbyXp7UL6PV9shhsBBTc",
+        "name": "HTTP Request",
+        "title": "HTTP Request",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "allow_headers_redirect": false,
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "display_name": "HTTP Request",
+          "method": "POST",
+          "relative_url": "/access_tokens",
+          "runtime_user": {
+            "override_target_runtime_user": true,
+            "runtime_user_id": "definition_runtime_user_022938Q7WTO1Z72IfnLe6gkaVgNcqq4OW9Z"
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_02292BWEZQX9K1qP20aoUEJ15VuEAmZGCdj"
+          }
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0230CMNZ1VIN92HIgCHbjA1LRp4RMx47WxQ",
+        "name": "JSONPath Query",
+        "title": "JSONPath Query",
+        "type": "corejava.jsonpathquery",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "continue_on_failure": false,
+          "display_name": "JSONPath Query",
+          "input_json": "$activity.definition_activity_02293LRZK508R5vSbyXp7UL6PV9shhsBBTc.output.response_body$",
+          "jsonpath_queries": [
+            {
+              "jsonpath_query": "$.access_token",
+              "jsonpath_query_name": "access_token",
+              "jsonpath_query_type": "string"
+            }
+          ],
+          "skip_execution": false
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0230CULLCP34V1vMGL0CSrsPOUX1oY2iqPr",
+        "name": "Set Variables",
+        "title": "Set Variables",
+        "type": "core.set_multiple_variables",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Set Variables",
+          "skip_execution": false,
+          "variables_to_update": [
+            {
+              "variable_to_update": "$global.variable_0230CU9VDR5RE6n8Upff4g48Ys4fiSVYvCP.global.variable_0230CU9VDR5RE6n8Upff4g48Ys4fiSVYvCP$",
+              "variable_value_new": "$activity.definition_activity_0230CMNZ1VIN92HIgCHbjA1LRp4RMx47WxQ.output.jsonpath_queries.access_token$"
+            }
+          ]
+        },
+        "object_type": "definition_activity"
+      },
+      {
+        "unique_name": "definition_activity_0230CJE9S4CML5uWTDzRQsc8EbU9LFj0kf7",
+        "name": "HTTP Request",
+        "title": "HTTP Request",
+        "type": "web-service.http_request",
+        "base_type": "activity",
+        "properties": {
+          "action_timeout": 180,
+          "allow_auto_redirect": true,
+          "allow_headers_redirect": false,
+          "content_type": "application/json",
+          "continue_on_error_status_code": false,
+          "continue_on_failure": false,
+          "custom_headers": [
+            {
+              "name": "Authorization",
+              "value": "Bearer $global.variable_0230CU9VDR5RE6n8Upff4g48Ys4fiSVYvCP.global.variable_0230CU9VDR5RE6n8Upff4g48Ys4fiSVYvCP$"
+            },
+            {
+              "name": "Size",
+              "value": "100"
+            }
+          ],
+          "display_name": "HTTP Request",
+          "method": "GET",
+          "relative_url": "/organizations?size=100",
+          "runtime_user": {
+            "target_default": true
+          },
+          "skip_execution": false,
+          "target": {
+            "override_workflow_target": true,
+            "target_id": "definition_target_02292BWEZQX9K1qP20aoUEJ15VuEAmZGCdj"
+          }
+        },
+        "object_type": "definition_activity"
+      }
+    ],
+    "categories": [
+      "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
+    ]
+  },
+  "targets": {
+    "definition_target_01LYH2TNGIVL145yjq4b5IyRe7nsMVf273d": {
+      "unique_name": "definition_target_01LYH2TNGIVL145yjq4b5IyRe7nsMVf273d",
+      "name": "CTR Target for access token",
+      "title": "CTR Target for access token",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "default_runtime_user_id": "definition_runtime_user_01J27GSCACMRA2jJMGJyhpahefccxGjHKsl",
+        "description": "CTR_For_Access_Token",
+        "disable_certificate_validation": false,
+        "display_name": "CTR Target for access token",
+        "host": "visibility.amp.cisco.com",
+        "no_runtime_user": false,
+        "path": "/iroh",
+        "protocol": "https"
+      }
+    },
+    "definition_target_02292BWEZQX9K1qP20aoUEJ15VuEAmZGCdj": {
+      "unique_name": "definition_target_02292BWEZQX9K1qP20aoUEJ15VuEAmZGCdj",
+      "name": "Endpoint_V3",
+      "title": "Endpoint_V3",
+      "type": "web-service.endpoint",
+      "base_type": "target",
+      "object_type": "definition_target",
+      "properties": {
+        "disable_certificate_validation": true,
+        "display_name": "Endpoint_V3",
+        "host": "api.amp.cisco.com",
+        "ignore_proxy": false,
+        "no_runtime_user": true,
+        "path": "/v3",
+        "port": 443,
+        "protocol": "https"
+      }
+    }
+  },
+  "runtime_users": {
+    "definition_runtime_user_01J27GSCACMRA2jJMGJyhpahefccxGjHKsl": {
+      "unique_name": "definition_runtime_user_01J27GSCACMRA2jJMGJyhpahefccxGjHKsl",
+      "name": "CTR_Credentials",
+      "title": "CTR_Credentials",
+      "description": "Account Key for CTR",
+      "type": "runtime_user.web-service_basic_credentials",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "auth_option": "Basic",
+        "basic_password": "*****",
+        "basic_username": "client-26fec708-1645-48a6-9e83-73c904ad66cf",
+        "display_name": "CTR_Credentials"
+      }
+    },
+    "definition_runtime_user_022938Q7WTO1Z72IfnLe6gkaVgNcqq4OW9Z": {
+      "unique_name": "definition_runtime_user_022938Q7WTO1Z72IfnLe6gkaVgNcqq4OW9Z",
+      "name": "SX_Token",
+      "title": "SX_Token",
+      "type": "runtime_user.oauth_integration",
+      "base_type": "runtime_user",
+      "object_type": "definition_runtime_user",
+      "properties": {
+        "display_name": "SX_Token"
+      }
+    }
+  },
+  "variables": {
+    "variable_0230CU9VDR5RE6n8Upff4g48Ys4fiSVYvCP": {
+      "unique_name": "variable_0230CU9VDR5RE6n8Upff4g48Ys4fiSVYvCP",
+      "properties": {
+        "value": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2NzQyNDkzNTUsImV4cCI6MTY3NDI1MTE1NSwiZW1haWwiOiJkYWxsb25nQGNpc2NvLmNvbSJ9.HSQ9_K3hlqqX-kENEqK2x9_toLlkY0f_wZtpQ4zOEHU",
+        "scope": "global",
+        "name": "CSE_Token",
+        "type": "datatype.string",
+        "is_required": false,
+        "is_invisible": false
+      },
+      "object_type": "variable"
+    }
+  }
+}
