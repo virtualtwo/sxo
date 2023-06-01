@@ -23,6 +23,20 @@
       {
         "schema_id": "datatype.string",
         "properties": {
+          "value": "Movies",
+          "scope": "input",
+          "name": "Category to Filter On",
+          "type": "datatype.string",
+          "description": "The category to search for. A list of categories can be found here: https://docs.umbrella.com/deployment-umbrella/docs/content-categories",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_0262XTAPDXD560vjDq8oAJmEe1lVEAFi7VX",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
           "value": "securex-orchestration",
           "scope": "local",
           "name": "ServiceNow User ID",
@@ -32,20 +46,6 @@
           "is_invisible": false
         },
         "unique_name": "variable_workflow_0262XTAPDWOZA055LmffzzIQaeFSVj797zr",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "Movies",
-          "scope": "input",
-          "name": "Category to Filter On",
-          "type": "datatype.string",
-          "description": "The category to search for. A list of categories can be found here: https://docs.umbrella.com/deployment-umbrella/docs/content-categories",
-          "is_required": true,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_0262XTAPDXD560vjDq8oAJmEe1lVEAFi7VX",
         "object_type": "variable_workflow"
       },
       {
@@ -229,7 +229,7 @@
             "variable_workflow_01PP7835ZXSIF2pgIqJLOyyhpO1lYbWNxaT": "now",
             "variable_workflow_01PP7835ZXWCK0wjtTmgtGE6mFN5CoVvYjP": "-7days",
             "variable_workflow_01PP7835ZXXXW67ZvAlx8RsHOiAboWfZMRL": "$activity.definition_activity_0262XTAV6YFI61AI3ghsnuevXmXfllukaf7.output.variable_workflow_01PP75D6AZ5UZ53AWQQ12vT5dEujYPUhe2x$",
-            "variable_workflow_01PP7835ZXZ360I0Eg6XSPfmuv7qgt6Htx2": "\u0026categories=$activity.definition_activity_0262XTAYP3CPO08CDTicw7X627MdoDBI5mb.output.jsonpath_queries.categoryId$",
+            "variable_workflow_01PP7835ZXZ360I0Eg6XSPfmuv7qgt6Htx2": "\u0026categories=67",
             "variable_workflow_01PP7835ZY0791LNKnhAOlHcOuMyXSqrv92": 0,
             "variable_workflow_01PP7835ZY1FD2JOySlDUhP075VHwUdrwA9": "dns",
             "variable_workflow_01PP7835ZY2LV5gyMixKO7s9XT5ADOLv5j5": "$workflow.definition_workflow_0262XTAP4AHL87bRjFZtJxmqHKKz4OZnPSN.local.variable_workflow_0262XTAPDWC7E59JjhkKhPns6vKKIboa5LT$",
