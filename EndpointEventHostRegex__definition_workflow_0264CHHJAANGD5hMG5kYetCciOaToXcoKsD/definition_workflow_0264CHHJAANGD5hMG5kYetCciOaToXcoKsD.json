@@ -7,6 +7,18 @@
     "base_type": "workflow",
     "variables": [
       {
+        "schema_id": "tabletype_026FHQHK73M9N5KAFdYnWr86m4i7G3rY5Oq",
+        "properties": {
+          "scope": "local",
+          "name": "Event Matching Hostnames",
+          "type": "datatype.table",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_026FHQZ76RSPS5bKNrbnl8AQ0Y9XEIOXhme",
+        "object_type": "variable_workflow"
+      },
+      {
         "schema_id": "datatype.string",
         "properties": {
           "value": "",
@@ -17,18 +29,6 @@
           "is_invisible": false
         },
         "unique_name": "variable_workflow_0264ND4C6AIQF4YFQSNq6zB03NY8qfXFXY0",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "tabletype_026FHQHK73M9N5KAFdYnWr86m4i7G3rY5Oq",
-        "properties": {
-          "scope": "local",
-          "name": "Event Matching Hostnames",
-          "type": "datatype.table",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_026FHQZ76RSPS5bKNrbnl8AQ0Y9XEIOXhme",
         "object_type": "variable_workflow"
       },
       {
@@ -227,6 +227,103 @@
         ]
       },
       {
+        "unique_name": "definition_activity_026FNJ60HUNWO6tU3m7Bj8wzqTIUSt2zrfP",
+        "name": "Parallel Block",
+        "title": "Parallel Block",
+        "type": "logic.parallel",
+        "base_type": "activity",
+        "properties": {
+          "continue_on_failure": false,
+          "display_name": "Parallel Block",
+          "skip_execution": false
+        },
+        "object_type": "definition_activity",
+        "blocks": [
+          {
+            "unique_name": "definition_activity_026FNJ61175P10EPHRMKWPxlpQ6T0cmMnMn",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_026FNJCSHB9NC4RBL86TG2c1gXvKEcaG32y",
+                "name": "Send Email",
+                "title": "Send Email",
+                "type": "email.smtp_send_email",
+                "base_type": "activity",
+                "properties": {
+                  "action_timeout": 180,
+                  "attachments": [
+                    ""
+                  ],
+                  "body": "$workflow.definition_workflow_0264CHHJAANGD5hMG5kYetCciOaToXcoKsD.local.variable_workflow_026FHQZ76RSPS5bKNrbnl8AQ0Y9XEIOXhme[0].Hostname$",
+                  "continue_if_one_address_valid": false,
+                  "continue_on_failure": false,
+                  "display_name": "Send Email",
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "skip_execution": false,
+                  "target": {
+                    "use_workflow_target": true
+                  }
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          },
+          {
+            "unique_name": "definition_activity_026FNJ61FRTIL5RKxbVlfdBm5VmtaPBQAkv",
+            "name": "Parallel Branch",
+            "title": "Parallel Branch",
+            "type": "logic.parallel_block",
+            "base_type": "activity",
+            "properties": {
+              "display_name": "Parallel Branch"
+            },
+            "object_type": "definition_activity",
+            "actions": [
+              {
+                "unique_name": "definition_activity_026FNJLXFMV4216fTQkXfhsIazO5iiYCYQ2",
+                "name": "ServiceNow - Create Incident",
+                "title": "ServiceNow - Create Incident",
+                "type": "workflow.atomic_workflow",
+                "base_type": "subworkflow",
+                "properties": {
+                  "display_name": "ServiceNow - Create Incident",
+                  "input": {
+                    "variable_workflow_024A3C33QF9117NAAHiw4yjRyjfTSCyHOcY": 2,
+                    "variable_workflow_024A3C33QG4KB6gXKjoPxmbE8TsSh1QiFbz": "",
+                    "variable_workflow_024A3C33QGBRY0vXwhIeQJ0C5cgCICwbAqq": "v2",
+                    "variable_workflow_024A3C33QGIYB1a8GxyhsUviqVPpoJjvMFl": "",
+                    "variable_workflow_024A3C33QGPO52wbhivMSRd36712nX8rUeH": "",
+                    "variable_workflow_024A3C33QH34L60r4F2r5mOO6j5DJ4qFR05": "",
+                    "variable_workflow_024A3C33QH9KK77n9xqdyt4eQoSKpDp5S5B": 2,
+                    "variable_workflow_024KB70LZWBXB79qp0VpTX0Hq1DbQx3xNzk": "",
+                    "variable_workflow_024KB7EP5C3QH51AttzJafii7FVpxgnB3WM": ""
+                  },
+                  "runtime_user": {
+                    "target_default": true
+                  },
+                  "target": {
+                    "target_type": "web-service.endpoint",
+                    "use_workflow_target": true
+                  },
+                  "workflow_id": "definition_workflow_024A3C33BO5GB3LQuJjtf6LgaqMOgI6Br3k",
+                  "workflow_name": "ServiceNow - Create Incident"
+                },
+                "object_type": "definition_activity"
+              }
+            ]
+          }
+        ]
+      },
+      {
         "unique_name": "definition_activity_0269KCIQG2H5Q0uziKXcxIz6F3gDzpYmxmd",
         "name": "Completed",
         "title": "Completed",
@@ -244,6 +341,42 @@
     "categories": [
       "category_1BMfMXSnJMyt5Ihqi7rWJr5N8cf"
     ]
+  },
+  "triggers": {
+    "triggerschedule_026FNIWK6BS9T38xGyiBgfplwxHLQ4bQgBQ": {
+      "workflow_id": "definition_workflow_0264CHHJAANGD5hMG5kYetCciOaToXcoKsD",
+      "name": "15 minute trigger",
+      "title": "",
+      "lowercase_name": "schedule.15_minute_trigger",
+      "type": "schedule",
+      "base_type": "trigger",
+      "ref_id": "schedule_026FNI37XHXE50mpYjc3sEDpvACaPiRxyaK",
+      "version": "1.0.0",
+      "disabled": true,
+      "unique_name": "triggerschedule_026FNIWK6BS9T38xGyiBgfplwxHLQ4bQgBQ",
+      "object_type": "triggerschedule"
+    }
+  },
+  "schedules": {
+    "schedule_026FNI37XHXE50mpYjc3sEDpvACaPiRxyaK": {
+      "unique_name": "schedule_026FNI37XHXE50mpYjc3sEDpvACaPiRxyaK",
+      "name": "Every 15 Minutes",
+      "type": "basic.schedule",
+      "base_type": "schedule",
+      "object_type": "schedule",
+      "rule_id": "",
+      "properties": {
+        "calendar": "calendar_recurring_1BMfMWvgiDhSjBQ7hTSyvz3NyVZ",
+        "timezone": "Etc/GMT+0",
+        "starttime": "01:00",
+        "interval_hours": 0,
+        "interval_minutes": 15,
+        "number_of_times": 90,
+        "display_name": "Every 15 Minutes",
+        "description": ""
+      },
+      "version": "1.0.0"
+    }
   },
   "targets": {
     "definition_target_0264CHCLIPKDZ1CtmmQy82wEry3Wzd5vHk3": {
@@ -297,5 +430,11 @@
       "base_type": "datatype",
       "object_type": "tabletype"
     }
-  }
+  },
+  "atomic_workflows": [
+    "definition_workflow_024A3C33BO5GB3LQuJjtf6LgaqMOgI6Br3k"
+  ],
+  "dependent_workflows": [
+    "definition_workflow_024A3C33BO5GB3LQuJjtf6LgaqMOgI6Br3k"
+  ]
 }
