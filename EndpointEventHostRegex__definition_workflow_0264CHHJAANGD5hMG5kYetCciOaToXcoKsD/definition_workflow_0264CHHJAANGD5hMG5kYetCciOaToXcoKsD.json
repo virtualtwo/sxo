@@ -22,19 +22,6 @@
         "schema_id": "datatype.string",
         "properties": {
           "value": "",
-          "scope": "output",
-          "name": "Event Output",
-          "type": "datatype.string",
-          "is_required": false,
-          "is_invisible": false
-        },
-        "unique_name": "variable_workflow_0264ND4C6AIQF4YFQSNq6zB03NY8qfXFXY0",
-        "object_type": "variable_workflow"
-      },
-      {
-        "schema_id": "datatype.string",
-        "properties": {
-          "value": "",
           "scope": "local",
           "name": "Regex Match",
           "type": "datatype.string",
@@ -42,6 +29,19 @@
           "is_invisible": false
         },
         "unique_name": "variable_workflow_026FMGNXPF2T11bxg3nmmEE8aVxgViqzVQo",
+        "object_type": "variable_workflow"
+      },
+      {
+        "schema_id": "datatype.string",
+        "properties": {
+          "value": "",
+          "scope": "output",
+          "name": "Event Output",
+          "type": "datatype.string",
+          "is_required": false,
+          "is_invisible": false
+        },
+        "unique_name": "variable_workflow_0264ND4C6AIQF4YFQSNq6zB03NY8qfXFXY0",
         "object_type": "variable_workflow"
       }
     ],
@@ -158,7 +158,7 @@
             "base_type": "activity",
             "properties": {
               "continue_on_failure": false,
-              "description": "Regex to identify specific hostname attributes",
+              "description": "Regex to identify specific hostname attributes.  Contains \"AMP\" as example.  ",
               "display_name": "Regex to Identify Hostname Attributes",
               "input_regex": "([^\"]*AMP[^\"]*)",
               "input_string": "$activity.definition_activity_026FMPLJQMD3G0KLivaoDDcy90WiawzsKHf.input.source_array[@].hostname$",
@@ -207,6 +207,7 @@
                     "properties": {
                       "action_timeout": 180,
                       "continue_on_failure": false,
+                      "description": "Output table can be used to extract information sent via Email or SNOW.  ",
                       "display_name": "Add Host to Output Table",
                       "input_table": "$workflow.definition_workflow_0264CHHJAANGD5hMG5kYetCciOaToXcoKsD.local.variable_workflow_026FHQZ76RSPS5bKNrbnl8AQ0Y9XEIOXhme$",
                       "row": [
@@ -268,7 +269,7 @@
                   "runtime_user": {
                     "target_default": true
                   },
-                  "skip_execution": false,
+                  "skip_execution": true,
                   "target": {
                     "use_workflow_target": true
                   }
@@ -295,6 +296,7 @@
                 "type": "workflow.atomic_workflow",
                 "base_type": "subworkflow",
                 "properties": {
+                  "continue_on_failure": false,
                   "display_name": "ServiceNow - Create Incident",
                   "input": {
                     "variable_workflow_024A3C33QF9117NAAHiw4yjRyjfTSCyHOcY": 2,
@@ -310,6 +312,7 @@
                   "runtime_user": {
                     "target_default": true
                   },
+                  "skip_execution": true,
                   "target": {
                     "target_type": "web-service.endpoint",
                     "use_workflow_target": true
